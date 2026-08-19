@@ -44,9 +44,16 @@ function lastWeekday(year, monthIndex, weekday) {
   return new Date(Date.UTC(year, monthIndex, last.getUTCDate() - offset));
 }
 
-function observedWeekday(date) {
+function observedNextMonday(date) {
   const day = date.getUTCDay();
   if (day === 6) return addDays(date, 2);
+  if (day === 0) return addDays(date, 1);
+  return date;
+}
+
+function observedUsFederal(date) {
+  const day = date.getUTCDay();
+  if (day === 6) return addDays(date, -1);
   if (day === 0) return addDays(date, 1);
   return date;
 }
@@ -74,21 +81,21 @@ function holidayDatesForYear(country, year) {
   const push = (date) => dates.push(dateKey(date));
 
   if (country === 'US') {
-    push(observedWeekday(new Date(Date.UTC(year, 0, 1))));
+    push(observedUsFederal(new Date(Date.UTC(year, 0, 1))));
     push(nthWeekday(year, 0, 1, 3));
     push(nthWeekday(year, 1, 1, 3));
     push(lastWeekday(year, 4, 1));
-    push(observedWeekday(new Date(Date.UTC(year, 5, 19))));
-    push(observedWeekday(new Date(Date.UTC(year, 6, 4))));
+    push(observedUsFederal(new Date(Date.UTC(year, 5, 19))));
+    push(observedUsFederal(new Date(Date.UTC(year, 6, 4))));
     push(nthWeekday(year, 8, 1, 1));
     push(nthWeekday(year, 9, 1, 2));
-    push(observedWeekday(new Date(Date.UTC(year, 10, 11))));
+    push(observedUsFederal(new Date(Date.UTC(year, 10, 11))));
     push(nthWeekday(year, 10, 4, 4));
-    push(observedWeekday(new Date(Date.UTC(year, 11, 25))));
+    push(observedUsFederal(new Date(Date.UTC(year, 11, 25))));
   }
 
   if (country === 'GB') {
-    push(observedWeekday(new Date(Date.UTC(year, 0, 1))));
+    push(observedNextMonday(new Date(Date.UTC(year, 0, 1))));
     const easter = easterSunday(year);
     push(addDays(easter, -2));
     push(addDays(easter, 1));
@@ -110,20 +117,20 @@ function holidayDatesForYear(country, year) {
   }
 
   if (country === 'CA') {
-    push(observedWeekday(new Date(Date.UTC(year, 0, 1))));
+    push(observedNextMonday(new Date(Date.UTC(year, 0, 1))));
     const easter = easterSunday(year);
     push(addDays(easter, -2));
     const may24 = new Date(Date.UTC(year, 4, 24));
     push(addDays(may24, -((may24.getUTCDay() + 6) % 7)));
-    push(observedWeekday(new Date(Date.UTC(year, 6, 1))));
+    push(observedNextMonday(new Date(Date.UTC(year, 6, 1))));
     push(nthWeekday(year, 8, 1, 1));
     push(nthWeekday(year, 9, 1, 2));
-    push(observedWeekday(new Date(Date.UTC(year, 11, 25))));
+    push(observedNextMonday(new Date(Date.UTC(year, 11, 25))));
   }
 
   if (country === 'AU') {
-    push(observedWeekday(new Date(Date.UTC(year, 0, 1))));
-    push(observedWeekday(new Date(Date.UTC(year, 0, 26))));
+    push(observedNextMonday(new Date(Date.UTC(year, 0, 1))));
+    push(observedNextMonday(new Date(Date.UTC(year, 0, 26))));
     const easter = easterSunday(year);
     push(addDays(easter, -2));
     push(addDays(easter, 1));
@@ -149,7 +156,7 @@ function holidayDatesForYear(country, year) {
 function buildHolidaySet(country, startYear, endYear) {
   if (country === 'NONE') return new Set();
   const holidays = new Set();
-  for (let year = startYear; year <= endYear; year += 1) {
+  for (let year = startYear - 1; year <= endYear + 1; year += 1) {
     holidayDatesForYear(country, year).forEach((key) => holidays.add(key));
   }
   return holidays;
