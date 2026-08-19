@@ -1,5 +1,212 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Business Days Calculator</title></head>
-<body></body>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculate business days between two dates. Exclude weekends and supported public holidays, then see a clear calendar-day breakdown.">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#f4fbf8">
+    <title>Business Days Calculator – Working Days Between Two Dates</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Business Days Calculator",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Any",
+        "description": "Calculate working days between two dates with optional weekend and public holiday exclusions."
+      }
+    </script>
+  </head>
+  <body>
+    <div class="page-glow page-glow-one" aria-hidden="true"></div>
+    <div class="page-glow page-glow-two" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="#calculator" aria-label="Business Days Calculator home">
+          <span class="brand-icon" aria-hidden="true">📅</span>
+          <span>Business Days Calculator</span>
+        </a>
+        <a class="header-link" href="#how-it-works">How it works</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero container" id="calculator">
+        <div class="hero-copy">
+          <p class="eyebrow">Fast working-day calculation</p>
+          <h1>How many business days are between two dates?</h1>
+          <p class="hero-text">Choose your dates, exclusions and country. Get the working-day total and a simple breakdown instantly.</p>
+        </div>
+
+        <div class="calculator-card">
+          <form id="businessDaysForm" novalidate>
+            <div class="form-grid">
+              <div class="field">
+                <label for="startDate">Start Date</label>
+                <input id="startDate" name="startDate" type="date" required>
+              </div>
+              <div class="field">
+                <label for="endDate">End Date</label>
+                <input id="endDate" name="endDate" type="date" required>
+              </div>
+              <div class="field field-wide">
+                <label for="country">Country</label>
+                <select id="country" name="country">
+                  <option value="US">United States</option>
+                  <option value="GB">United Kingdom</option>
+                  <option value="CA">Canada</option>
+                  <option value="AU">Australia</option>
+                  <option value="NONE">No holiday calendar</option>
+                </select>
+                <p class="field-hint">Holiday support covers common nationwide public holidays.</p>
+              </div>
+            </div>
+
+            <div class="toggle-grid" aria-label="Calculation options">
+              <label class="toggle-row" for="excludeWeekends">
+                <span>
+                  <strong>Exclude weekends</strong>
+                  <small>Remove Saturdays and Sundays</small>
+                </span>
+                <span class="switch">
+                  <input id="excludeWeekends" type="checkbox" checked>
+                  <span class="switch-track" aria-hidden="true"></span>
+                </span>
+              </label>
+
+              <label class="toggle-row" for="excludeHolidays">
+                <span>
+                  <strong>Exclude holidays</strong>
+                  <small>Remove supported public holidays</small>
+                </span>
+                <span class="switch">
+                  <input id="excludeHolidays" type="checkbox" checked>
+                  <span class="switch-track" aria-hidden="true"></span>
+                </span>
+              </label>
+            </div>
+
+            <p class="form-error" id="formError" role="alert" aria-live="polite"></p>
+
+            <div class="action-row">
+              <button class="btn-secondary" id="resetButton" type="button">Reset</button>
+              <button class="btn-primary" type="submit">Calculate Business Days</button>
+            </div>
+          </form>
+        </div>
+
+        <section class="results-panel" id="resultsPanel" aria-live="polite" aria-labelledby="resultsTitle">
+          <div class="result-main">
+            <p class="result-label" id="resultsTitle">Business Days</p>
+            <strong class="result-number" id="businessDaysResult">—</strong>
+            <p class="result-range" id="resultRange">Enter two dates to calculate.</p>
+          </div>
+
+          <div class="result-grid">
+            <article class="result-card">
+              <span aria-hidden="true">🗓️</span>
+              <strong id="calendarDaysResult">—</strong>
+              <p>Calendar Days</p>
+            </article>
+            <article class="result-card">
+              <span aria-hidden="true">☀️</span>
+              <strong id="weekendDaysResult">—</strong>
+              <p>Weekend Days</p>
+            </article>
+            <article class="result-card">
+              <span aria-hidden="true">🎉</span>
+              <strong id="holidayDaysResult">—</strong>
+              <p>Holidays Excluded</p>
+            </article>
+          </div>
+
+          <button class="btn-ghost" id="copyButton" type="button" disabled>Copy Result</button>
+        </section>
+      </section>
+
+      <aside class="ad-slot ad-slot-leaderboard" aria-label="Advertisement">
+        <span>Advertisement</span>
+        <div class="ad-placeholder">Responsive ad space</div>
+      </aside>
+
+      <section class="app-section container" id="how-it-works">
+        <div class="section-header">
+          <div>
+            <p class="section-eyebrow">Simple breakdown</p>
+            <h2 class="section-title">How business days are calculated</h2>
+          </div>
+        </div>
+        <div class="card-grid">
+          <article class="app-card">
+            <div class="card-icon" aria-hidden="true">1</div>
+            <h3>Count the date range</h3>
+            <p>The calculator counts each calendar date from the start date through the end date.</p>
+          </article>
+          <article class="app-card">
+            <div class="card-icon" aria-hidden="true">2</div>
+            <h3>Remove weekends</h3>
+            <p>When enabled, Saturdays and Sundays are removed from the business-day total.</p>
+          </article>
+          <article class="app-card">
+            <div class="card-icon" aria-hidden="true">3</div>
+            <h3>Remove holidays</h3>
+            <p>Supported nationwide public holidays are excluded when the holiday option is enabled.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="app-section container">
+        <div class="section-header compact-header">
+          <div>
+            <p class="section-eyebrow">Useful for everyday work</p>
+            <h2 class="section-title">Common uses</h2>
+          </div>
+        </div>
+        <div class="use-grid">
+          <article class="use-card"><span aria-hidden="true">📄</span><strong>Contracts</strong><p>Check working-day notice periods.</p></article>
+          <article class="use-card"><span aria-hidden="true">💼</span><strong>Payroll</strong><p>Estimate workdays in a date range.</p></article>
+          <article class="use-card"><span aria-hidden="true">📦</span><strong>Shipping</strong><p>Plan delivery and processing windows.</p></article>
+          <article class="use-card"><span aria-hidden="true">🎯</span><strong>Projects</strong><p>Measure deadlines in working days.</p></article>
+        </div>
+      </section>
+
+      <aside class="ad-slot ad-slot-content" aria-label="Advertisement">
+        <span>Advertisement</span>
+        <div class="ad-placeholder">Responsive ad space</div>
+      </aside>
+
+      <section class="app-section container faq-section">
+        <div class="section-header compact-header">
+          <div>
+            <p class="section-eyebrow">Quick answers</p>
+            <h2 class="section-title">Frequently asked questions</h2>
+          </div>
+        </div>
+        <div class="faq-list">
+          <details><summary>Are the start and end dates included?</summary><p>Yes. Both dates are included in the calendar range. Weekend and holiday exclusions are then applied.</p></details>
+          <details><summary>What counts as a weekend?</summary><p>This calculator treats Saturday and Sunday as weekend days.</p></details>
+          <details><summary>Are all local holidays included?</summary><p>No. Holiday support focuses on common nationwide public holidays. Regional, state, provincial and employer-specific holidays may differ.</p></details>
+          <details><summary>Can I include weekends?</summary><p>Yes. Turn off “Exclude weekends” before calculating.</p></details>
+          <details><summary>Can I calculate without holidays?</summary><p>Yes. Turn off “Exclude holidays” or choose “No holiday calendar.”</p></details>
+        </div>
+      </section>
+
+      <aside class="ad-slot ad-slot-bottom" aria-label="Advertisement">
+        <span>Advertisement</span>
+        <div class="ad-placeholder">Responsive ad space</div>
+      </aside>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>Business Days Calculator</p>
+        <p>Results are for planning and estimation.</p>
+      </div>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
 </html>
