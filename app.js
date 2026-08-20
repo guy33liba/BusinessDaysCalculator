@@ -279,3 +279,12 @@ countrySelect.addEventListener('change', () => {
 });
 
 resetResults();
+
+(() => {
+  if (window.__FREE_TOOLS_WIDGET_LOADER__) return;
+  window.__FREE_TOOLS_WIDGET_LOADER__ = true;
+  const script = document.createElement('script');
+  script.src = 'https://appointments-schedule.netlify.app/tools-widget.js';
+  script.defer = true;
+  document.head.append(script);
+})();
