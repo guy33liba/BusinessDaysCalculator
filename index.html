@@ -66,105 +66,39 @@
             </div>
 
             <div class="toggle-grid" aria-label="Calculation options">
-              <label class="toggle-row" for="excludeWeekends">
-                <span>
-                  <strong>Exclude weekends</strong>
-                  <small>Remove Saturdays and Sundays</small>
-                </span>
-                <span class="switch">
-                  <input id="excludeWeekends" type="checkbox" checked>
-                  <span class="switch-track" aria-hidden="true"></span>
-                </span>
-              </label>
-
-              <label class="toggle-row" for="excludeHolidays">
-                <span>
-                  <strong>Exclude holidays</strong>
-                  <small>Remove supported public holidays</small>
-                </span>
-                <span class="switch">
-                  <input id="excludeHolidays" type="checkbox" checked>
-                  <span class="switch-track" aria-hidden="true"></span>
-                </span>
-              </label>
+              <label class="toggle-row" for="excludeWeekends"><span><strong>Exclude weekends</strong><small>Remove Saturdays and Sundays</small></span><span class="switch"><input id="excludeWeekends" type="checkbox" checked><span class="switch-track" aria-hidden="true"></span></span></label>
+              <label class="toggle-row" for="excludeHolidays"><span><strong>Exclude holidays</strong><small>Remove supported public holidays</small></span><span class="switch"><input id="excludeHolidays" type="checkbox" checked><span class="switch-track" aria-hidden="true"></span></span></label>
             </div>
 
             <p class="form-error" id="formError" role="alert" aria-live="polite"></p>
-
-            <div class="action-row">
-              <button class="btn-secondary" id="resetButton" type="button">Reset</button>
-              <button class="btn-primary" type="submit">Calculate Business Days</button>
-            </div>
+            <div class="action-row"><button class="btn-secondary" id="resetButton" type="button">Reset</button><button class="btn-primary" type="submit">Calculate Business Days</button></div>
           </form>
         </div>
 
         <section class="results-panel" id="resultsPanel" aria-live="polite" aria-labelledby="resultsTitle">
-          <div class="result-main">
-            <p class="result-label" id="resultsTitle">Business Days</p>
-            <strong class="result-number" id="businessDaysResult">—</strong>
-            <p class="result-range" id="resultRange">Enter two dates to calculate.</p>
-          </div>
-
+          <div class="result-main"><p class="result-label" id="resultsTitle">Business Days</p><strong class="result-number" id="businessDaysResult">—</strong><p class="result-range" id="resultRange">Enter two dates to calculate.</p></div>
           <div class="result-grid">
-            <article class="result-card">
-              <span aria-hidden="true">🗓️</span>
-              <strong id="calendarDaysResult">—</strong>
-              <p>Calendar Days</p>
-            </article>
-            <article class="result-card">
-              <span aria-hidden="true">☀️</span>
-              <strong id="weekendDaysResult">—</strong>
-              <p>Weekend Days</p>
-            </article>
-            <article class="result-card">
-              <span aria-hidden="true">🎉</span>
-              <strong id="holidayDaysResult">—</strong>
-              <p>Holidays Excluded</p>
-            </article>
+            <article class="result-card"><span aria-hidden="true">🗓️</span><strong id="calendarDaysResult">—</strong><p>Calendar Days</p></article>
+            <article class="result-card"><span aria-hidden="true">☀️</span><strong id="weekendDaysResult">—</strong><p>Weekend Days</p></article>
+            <article class="result-card"><span aria-hidden="true">🎉</span><strong id="holidayDaysResult">—</strong><p>Holidays Excluded</p></article>
           </div>
-
           <button class="btn-ghost" id="copyButton" type="button" disabled>Copy Result</button>
         </section>
       </section>
 
-      <aside class="ad-slot ad-slot-leaderboard" aria-label="Advertisement">
-        <span>Advertisement</span>
-        <div class="ad-placeholder">Responsive ad space</div>
-      </aside>
+      <aside class="ad-slot ad-slot-leaderboard" aria-label="Advertisement"><span>Advertisement</span><div class="ad-placeholder">Responsive ad space</div></aside>
 
       <section class="app-section container" id="how-it-works">
-        <div class="section-header">
-          <div>
-            <p class="section-eyebrow">Simple breakdown</p>
-            <h2 class="section-title">How business days are calculated</h2>
-          </div>
-        </div>
+        <div class="section-header"><div><p class="section-eyebrow">Simple breakdown</p><h2 class="section-title">How business days are calculated</h2></div></div>
         <div class="card-grid">
-          <article class="app-card">
-            <div class="card-icon" aria-hidden="true">1</div>
-            <h3>Count the date range</h3>
-            <p>The calculator counts each calendar date from the start date through the end date.</p>
-          </article>
-          <article class="app-card">
-            <div class="card-icon" aria-hidden="true">2</div>
-            <h3>Remove weekends</h3>
-            <p>When enabled, Saturdays and Sundays are removed from the business-day total.</p>
-          </article>
-          <article class="app-card">
-            <div class="card-icon" aria-hidden="true">3</div>
-            <h3>Remove holidays</h3>
-            <p>Supported nationwide public holidays are excluded when the holiday option is enabled.</p>
-          </article>
+          <article class="app-card"><div class="card-icon" aria-hidden="true">1</div><h3>Count the date range</h3><p>The calculator counts each calendar date from the start date through the end date.</p></article>
+          <article class="app-card"><div class="card-icon" aria-hidden="true">2</div><h3>Remove weekends</h3><p>When enabled, Saturdays and Sundays are removed from the business-day total.</p></article>
+          <article class="app-card"><div class="card-icon" aria-hidden="true">3</div><h3>Remove holidays</h3><p>Supported nationwide public holidays are excluded when the holiday option is enabled.</p></article>
         </div>
       </section>
 
       <section class="app-section container">
-        <div class="section-header compact-header">
-          <div>
-            <p class="section-eyebrow">Useful for everyday work</p>
-            <h2 class="section-title">Common uses</h2>
-          </div>
-        </div>
+        <div class="section-header compact-header"><div><p class="section-eyebrow">Useful for everyday work</p><h2 class="section-title">Common uses</h2></div></div>
         <div class="use-grid">
           <article class="use-card"><span aria-hidden="true">📄</span><strong>Contracts</strong><p>Check working-day notice periods.</p></article>
           <article class="use-card"><span aria-hidden="true">💼</span><strong>Payroll</strong><p>Estimate workdays in a date range.</p></article>
@@ -173,18 +107,10 @@
         </div>
       </section>
 
-      <aside class="ad-slot ad-slot-content" aria-label="Advertisement">
-        <span>Advertisement</span>
-        <div class="ad-placeholder">Responsive ad space</div>
-      </aside>
+      <aside class="ad-slot ad-slot-content" aria-label="Advertisement"><span>Advertisement</span><div class="ad-placeholder">Responsive ad space</div></aside>
 
       <section class="app-section container faq-section">
-        <div class="section-header compact-header">
-          <div>
-            <p class="section-eyebrow">Quick answers</p>
-            <h2 class="section-title">Frequently asked questions</h2>
-          </div>
-        </div>
+        <div class="section-header compact-header"><div><p class="section-eyebrow">Quick answers</p><h2 class="section-title">Frequently asked questions</h2></div></div>
         <div class="faq-list">
           <details><summary>Are the start and end dates included?</summary><p>Yes. Both dates are included in the calendar range. Weekend and holiday exclusions are then applied.</p></details>
           <details><summary>What counts as a weekend?</summary><p>This calculator treats Saturday and Sunday as weekend days.</p></details>
@@ -195,35 +121,16 @@
       </section>
 
       <section class="app-section container" aria-labelledby="more-tools-title">
-        <div class="section-header compact-header">
-          <div>
-            <p class="section-eyebrow">Explore more</p>
-            <h2 class="section-title" id="more-tools-title">More Free Tools</h2>
-          </div>
-        </div>
-        <p>
-          <a href="https://appointments-schedule.netlify.app/">Appointment Scheduler</a> ·
-          <a href="https://keywordcalculator.netlify.app/">Keyword Calculator</a> ·
-          <a href="https://electric-calc.netlify.app/dist/index.html">Electricity Calculator</a> ·
-          <a href="https://qr-code222.netlify.app/">QR Code Generator</a> ·
-          <a href="https://case-converter222.netlify.app/">Case Converter</a> ·
-          <a href="https://picture-compression.netlify.app/">Image Compressor</a>
-        </p>
+        <div class="section-header compact-header"><div><p class="section-eyebrow">Explore more</p><h2 class="section-title" id="more-tools-title">More Free Tools</h2></div></div>
+        <p><a href="https://appointments-schedule.netlify.app/">Appointment Scheduler</a> · <a href="https://keywordcalculator.netlify.app/">Keyword Calculator</a> · <a href="https://electric-calc.netlify.app/dist/index.html">Electricity Calculator</a> · <a href="https://qr-code222.netlify.app/">QR Code Generator</a> · <a href="https://case-converter222.netlify.app/">Case Converter</a> · <a href="https://picture-compression.netlify.app/">Image Compressor</a></p>
       </section>
 
-      <aside class="ad-slot ad-slot-bottom" aria-label="Advertisement">
-        <span>Advertisement</span>
-        <div class="ad-placeholder">Responsive ad space</div>
-      </aside>
+      <aside class="ad-slot ad-slot-bottom" aria-label="Advertisement"><span>Advertisement</span><div class="ad-placeholder">Responsive ad space</div></aside>
     </main>
 
-    <footer class="site-footer">
-      <div class="container footer-inner">
-        <p>Business Days Calculator</p>
-        <p>Results are for planning and estimation.</p>
-      </div>
-    </footer>
+    <footer class="site-footer"><div class="container footer-inner"><p>Business Days Calculator</p><p>Results are for planning and estimation.</p></div></footer>
 
     <script src="app.js"></script>
+    <script src="https://appointments-schedule.netlify.app/tools-widget.js"></script>
   </body>
 </html>
